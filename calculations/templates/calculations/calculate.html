@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>条件確率計算</title>
+    <style>
+        body {
+            background-color: navy;
+            color: yellowgreen;
+        }
+        input[type="text"], input[type="number"] {
+            background-color: #333;
+            color: yellowgreen;
+            border: 1px solid yellowgreen;
+        }
+    </style>
+</head>
+<body>
+    <h1>条件確率計算</h1>
+    <p>以下の変数を入力して、条件確率 \( P(A|B) \) と \( P(B|A) \) を計算します。</p>
+    
+    <h2>変数の説明</h2>
+    <ul>
+        <li><strong>P(A ∩ B):</strong> 事象 A と事象 B が同時に発生する確率</li>
+        <li><strong>P(A):</strong> 事象 A が発生する確率</li>
+        <li><strong>P(B):</strong> 事象 B が発生する確率</li>
+    </ul>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">計算</button>
+    </form>
+
+    {% if result %}
+        <h2>結果</h2>
+        <p>P(A|B) = {{ result.probability_a_given_b }}</p>
+        <p><strong>説明:</strong> 条件確率 \( P(A|B) \) は、事象 B が発生したときに事象 A が発生する確率を表します。</p>
+
+        <p>P(B|A) = {{ result.probability_b_given_a }}</p>
+        <p><strong>説明:</strong> 条件確率 \( P(B|A) \) は、事象 A が発生したときに事象 B が発生する確率を表します。</p>
+    {% endif %}
+</body>
+</html>
