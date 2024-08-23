@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: conditional_prob
+    env: python
+    plan: free
+    region: oregon
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn conditional_prob.wsgi --log-file -
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: conditional_prob.settings
